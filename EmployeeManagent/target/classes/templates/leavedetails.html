@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>User Register</title>
+
+    <!-- Styles -->
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/img/favicon.png">
+</head>
+
+<body class="layout-centered bg-img">
+<div th:replace="usermenu :: nav"></div>
+
+<!-- Main Content -->
+<main class="main-content">
+
+	<section class="section">
+		<div class="container">
+			<form class="row gap-y" method="post" th:action="@{/user/leave}" th:object="${newLeave}">
+				<div class="col-lg-6">
+					<h3 class="mb-7">Leave History</h3>
+					<table class="table table-cart">
+						<tbody valign="middle">
+						<tr th:each="leave : ${history}">
+							<td>
+								<h5 th:text = "'' + ${leave.days} + ' Day(s)'"></h5>
+							</td>
+							<td>
+								<h5 th:text = "${leave.title}"></h5></a>
+								<p th:text = "''+ ${#dates.format(leave.leaveFrom, 'yyyy-MM-dd')} +' to '+ ${#dates.format(leave.leaveTo, 'yyyy-MM-dd')}"></p>
+							</td>
+
+							<td th:switch="${leave.status.name()}">
+								<h4 th:case="'PENDING'" class="text-primary m-4" th:text = "${leave.status}"></h4>
+								<h4 th:case="'REJECTED'" class="text-danger m-4" th:text = "${leave.status}"></h4>
+								<h4 th:case="'ACCEPTED'" class="text-success m-4" th:text = "${leave.status}"></h4>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-lg-5 ml-auto text-center text-lg-left">
+						<hr class="d-lg-none">
+						<h3>Apply for leave</h3>
+						<p th:text="'Available leave : '+ ${leave.remainingLeaves}+' days'"></p>
+						<br>
+
+						<div class="form-group">
+							<label>Title</label>
+							<input th:field="*{title}" class="form-control form-control-lg" type="text" name="title" placeholder="Leave title">
+							<span style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Leave start date</label>
+								<input th:value="*{#dates.format(leaveFrom, 'yyyy-MM-dd')}" class="form-control form-control-lg" type="date" name="leaveFrom" placeholder="Start date">
+								<span style="color:red" th:if="${#fields.hasErrors('leaveFrom')}" th:errors="*{leaveFrom}"></span>
+							</div>
+
+							<div class="form-group col-md-6">
+								<label>Leave end date</label>
+								<input th:value="*{#dates.format(leaveTo, 'yyyy-MM-dd')}" class="form-control form-control-lg" type="date" name="leaveTo" placeholder="End date">
+								<span style="color:red" th:if="${#fields.hasErrors('leaveTo')}" th:errors="*{leaveTo}"></span>
+							</div>
+						</div>
+
+						<button class="btn btn-lg btn-primary" type="submit">Apply</button>
+				</div>
+			</form>
+
+		</div>
+	</section>
+
+
+
+
+</main><!-- /.main-content -->
+
+
+<!-- Scripts -->
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+</body>
+</html>

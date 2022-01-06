@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Login for all</title>
+
+    <!-- Styles -->
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/img/favicon.png">
+</head>
+
+<body class="layout-centered bg-img">
+
+
+<!-- Main Content -->
+<main class="main-content">
+
+
+    <div class="bg-white rounded shadow-7 w-400 mw-100 p-6">
+
+        <div th:if="${message != null}" th:text="${message}" class="alert alert-success" role="alert">
+
+        </div>
+        <h5 class="mb-7">Sign into your account</h5>
+
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Email" required="required">
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </div>
+
+            <div class="form-group flexbox py-3">
+                <a class="text-muted small-2" href="user-recover.html">Forgot password?</a>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-block btn-primary" type="submit">Login</button>
+            </div>
+        </form>
+        <hr class="w-30">
+
+        <p class="text-center text-muted small-2">Don't have an account? <a th:href="@{/register}">Register here</a></p>
+    </div>
+
+</main><!-- /.main-content -->
+
+
+<!-- Scripts -->
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+
+	<title>Leave application</title>
+
+	<!-- Styles -->
+	<link href="../assets/css/page.min.css" rel="stylesheet">
+	<link href="../assets/css/style.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="icon" href="../assets/img/favicon.png">
+</head>
+
+<body class="layout-centered bg-img">
+<div th:replace="menu :: nav"></div>
+
+<!-- Main Content -->
+<main class="main-content">
+
+	<section class="section">
+		<div class="container">
+			<form class="row gap-y">
+				<div class="col-lg-6">
+					<h3 class="mb-7">Leave Applications</h3>
+					<table class="table table-cart">
+						<tbody valign="middle">
+						<tr th:each="leaveApplication : ${applications}">
+							<td>
+								<h5 th:text = "'' + ${leaveApplication.days} + ' Day(s)'"></h5>
+							</td>
+							<td>
+								<h4 th:text = "${leaveApplication.userName}"></h4>
+								<h5 th:text = "${leaveApplication.title}"></h5>
+								<p th:text = "''+ ${#dates.format(leaveApplication.leaveFrom, 'yyyy-MM-dd')} +' to '+ ${#dates.format(leaveApplication.leaveTo, 'yyyy-MM-dd')}"></p>
+							</td>
+
+							<td>
+								<div class="dropdown">
+										<span data-toggle="dropdown" th:if="${leaveApplication.status.name() == 'PENDING'}" class="dropdown-toggle text-primary m-4" th:text = "${leaveApplication.status}"></span>
+										<span data-toggle="dropdown" th:if="${leaveApplication.status.name() == 'REJECTED'}" class="dropdown-toggle text-danger m-4" th:text = "${leaveApplication.status}"></span>
+										<span data-toggle="dropdown" th:if="${leaveApplication.status.name() == 'ACCEPTED'}" class="dropdown-toggle text-success m-4" th:text = "${leaveApplication.status}"></span>
+
+									<div class="dropdown-menu" style="">
+										<a th:each="status : ${T(com.management.employee.enums.LeaveStatus).values()}" class="dropdown-item"
+										   th:href="@{/employee/leave/} + ${leaveApplication.id}+ '/' + ${status.name()}" th:text="${status.name()}"></a>
+									</div>
+								</div>
+							</td>
+
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+
+		</div>
+	</section>
+
+
+
+
+</main><!-- /.main-content -->
+
+
+<!-- Scripts -->
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+</body>
+</html>

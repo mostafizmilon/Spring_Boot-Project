@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+
+	<title>Leave application</title>
+
+	<!-- Styles -->
+	<link href="../assets/css/page.min.css" rel="stylesheet">
+	<link href="../assets/css/style.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="icon" href="../assets/img/favicon.png">
+</head>
+
+<body class="layout-centered bg-img">
+<div th:replace="usermenu :: nav"></div>
+
+<!-- Main Content -->
+<main class="main-content">
+
+	<section class="section">
+		<div class="container">
+			<form class="row gap-y">
+				<div class="col-lg-6">
+					<h3 class="mb-7">Employee salary</h3>
+					<table class="table table-cart">
+						<tbody valign="middle">
+						<tr th:each="salary : ${salaries}">
+							<td>
+								<h5 th:text = "${salary.monthName}"></h5>
+							</td>
+							<td>
+								<h4 th:text = "${salary.userName}"></h4>
+								<h4 th:text = "${salary.salary}"></h4>
+								<p th:text = "'basic = '+ ${salary.basic}"></p>
+								<p th:text = "'house rent = '+ ${salary.houseRent}"></p>
+								<p th:text = "'medical = '+ ${salary.medical}"></p>
+								<p th:text = "'conveyance = '+ ${salary.conveyance}"></p>
+								<p th:text = "'unpaid leaves = '+ ${salary.unpaidLeaves}"></p>
+								<p th:text = "'deduction = '+ ${salary.deduction}"></p>
+
+							</td>
+
+							<td>
+								<span data-toggle="dropdown" th:if="${salary.status == 'PAID'}" class="text-primary m-4" th:text = "${salary.status}"></span>
+							</td>
+
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+
+		</div>
+	</section>
+
+
+
+
+</main><!-- /.main-content -->
+
+
+<!-- Scripts -->
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Employees</title>
+
+    <!-- Styles -->
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/img/favicon.png">
+</head>
+
+<body>
+
+<div th:replace="menu :: nav"></div>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <section class="section">
+        <div class="container">
+
+            <form class="row gap-y">
+                <div class="col-lg-11">
+
+                    <table class="table table-cart">
+                        <tbody valign="middle">
+                        <tr th:each="employee : ${employees}">
+                            <td>
+                                <a th:href="@{employee/}+${employee.id}">
+									<img th:if = "${employee.photos != null}" class="rounded" th:src="@{${employee.photos}}" alt="Employee image">
+                                    <img th:if = "${employee.photos == null}" class="rounded" src="../assets/img/avatar/1.jpg" alt="Employee image">
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{employee/}+${employee.id}"><h5 th:text = "${employee.full_name}"></h5></a>
+                                <h6 th:text = "${employee.email}"></h6>
+                                <p th:text = "${employee.address}"></p>
+                            </td>
+
+                            <td th:switch="${employee.enabled}">
+                                <h4 th:case="true" th:text = "Active"></h4>
+                                <h4 th:case="false" class="text-danger m-4" th:text = "Pending"></h4>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </section>
+
+</main>
+
+
+
+
+
+<!-- Scripts -->
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>User Register</title>
+
+    <!-- Styles -->
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/img/favicon.png">
+</head>
+
+<body class="layout-centered bg-img">
+<div th:replace="usermenu :: nav"></div>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <section class="section">
+        <div class="container">
+			<form class="row gap-y"  th:object="${user}">
+				<div class="col-lg-7">
+                    <h3 class="mb-7">User Details</h3>
+                        <div class="form-group">
+                            <label>Full name</label>
+                            <input type="text" th:field="*{full_name}" class="form-control" name="full_name" placeholder="Your Full Name" disabled= "disabled">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" th:field="*{address}" class="form-control" name="address" placeholder="Your Address" disabled= "disabled">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" th:field="*{email}"  class="form-control" name="email" placeholder="Email Address" disabled= "disabled">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Designation</label>
+                            <input type="text" th:field="*{designation}"  class="form-control" name="designation" placeholder="Designation" disabled= "disabled">
+                        </div>
+            	</div>
+				<div class="col-lg-4 ml-auto text-center text-lg-left">
+					<hr class="d-lg-none">
+					<h3>Leave Details</h3>
+					<p th:text="'Total allowed leaves: '+ ${leave.leaves}"></p>
+					<p th:text="'Remaining leaves: '+ ${leave.remainingLeaves}"></p>
+
+					<br>
+
+					<h3>Salary Details</h3>
+					<p th:text ="'Monthly salary: '+ ${salary.salary}"></p>
+				</div>
+            </form>
+
+        </div>
+    </section>
+
+
+
+
+</main><!-- /.main-content -->
+
+
+<!-- Scripts -->
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+</body>
+</html>
